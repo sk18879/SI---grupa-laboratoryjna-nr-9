@@ -1,0 +1,7 @@
+D:\Materialy\AI\SI---grupa-laboratoryjna-nr-9\AI\AI\bin\Debug\AI.exe.config
+D:\Materialy\AI\SI---grupa-laboratoryjna-nr-9\AI\AI\bin\Debug\AI.exe
+D:\Materialy\AI\SI---grupa-laboratoryjna-nr-9\AI\AI\bin\Debug\AI.pdb
+D:\Materialy\AI\SI---grupa-laboratoryjna-nr-9\AI\AI\obj\Debug\AI.csprojAssemblyReference.cache
+D:\Materialy\AI\SI---grupa-laboratoryjna-nr-9\AI\AI\obj\Debug\AI.csproj.CoreCompileInputs.cache
+D:\Materialy\AI\SI---grupa-laboratoryjna-nr-9\AI\AI\obj\Debug\AI.exe
+D:\Materialy\AI\SI---grupa-laboratoryjna-nr-9\AI\AI\obj\Debug\AI.pdb
