@@ -29,8 +29,8 @@ namespace AI
 
             for (int i = 0; i < number; i++)
             {
-                double price = r.Next(minPrice, maxPrice);
-                double weight = r.Next(minWeight, maxWeight);
+                int price = r.Next(minPrice, maxPrice);
+                int weight = r.Next(minWeight, maxWeight);
 
                 Item item = new Item(i, price, weight);
 

@@ -8,7 +8,7 @@ namespace AI
 {
     class Item
     {
-        public Item(int id, double price, double weight)
+        public Item(int id, int price, int weight)
         {
             Id = id;
             Price = price;
@@ -16,8 +16,8 @@ namespace AI
         }
 
         public int Id { get; set; }
-        public double Price { get; set; }
-        public double Weight { get; set; }
+        public int Price { get; set; }
+        public int Weight { get; set; }
 
         public override string ToString()
         {
