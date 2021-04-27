@@ -21,6 +21,16 @@ namespace AI
         {
             return "waga: "+weight+" wartość: "+value;
         }
+
+        public void Add(Item item)
+        {
+
+            list.Add(item);
+            value += item.Price;
+            weight += item.Weight;
+
+        }
+
     }
 
 
@@ -44,7 +54,7 @@ namespace AI
             int wagaDopuszczalna = 300;
 
 
-            ItemSet[] itemSets = new ItemSet[100];
+            ItemSet[] itemSets = new ItemSet[20];
             
 
 
@@ -66,13 +76,7 @@ namespace AI
                     var item = items[index];
 
                     if (itemSet.weight + item.Weight >= wagaDopuszczalna) break;
-
-                    itemSet.value += item.Price;
-                    itemSet.weight += item.Weight;
-                    
-
-                    itemSet.list.Add(item);
-                   
+                    itemSet.Add(item);
                 }
 
                 
@@ -83,22 +87,13 @@ namespace AI
 
             
             var allValues = itemSets.Select(itemSet => itemSet.value);
-            var maxWartosc = allValues.Max();
-            var maxIndex = allValues.ToList().IndexOf(maxWartosc);
-
-
-
+            var maxValue = allValues.Max();
+            var maxIndex = allValues.ToList().IndexOf(maxValue);
 
 
 
             itemSets.ToList().ForEach(itemSet => Console.WriteLine(itemSet));
-          
-
-
             Console.WriteLine("\nNajlepszy: \n" + itemSets[maxIndex]);
-           
-
-
             Console.ReadLine();
            
            
