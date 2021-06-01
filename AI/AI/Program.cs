@@ -10,9 +10,9 @@ namespace AI
 {
 
 
-    class ItemSet
+    class Plecak
     {
-        public List<Item> list = new List<Item>();
+        public List<Item> itemList = new List<Item>();
         public int weight, value;
 
 
@@ -25,7 +25,7 @@ namespace AI
         public void Add(Item item)
         {
 
-            list.Add(item);
+            itemList.Add(item);
             value += item.Price;
             weight += item.Weight;
 
@@ -38,67 +38,114 @@ namespace AI
     {
 
 
-       
+
 
 
         static void Main(string[] args)
         {
-       
+
 
             string path = Environment.CurrentDirectory + "/data.json";
             string json = File.ReadAllText(path);
-           
-
             var items = json.FromJson<List<Item>>();
+            var random = new Random();
 
             int wagaDopuszczalna = 300;
+            int HMS = 20;
+            Plecak[] HM = new Plecak[HMS];
+         
+
+           
 
 
-            ItemSet[] itemSets = new ItemSet[20];
+            for (int i = 0; i < HM.Length; i++)
+                HM[i] = generujPlecak();
             
 
 
 
+            HM.ToList().ForEach(itemSet => Console.WriteLine(itemSet));
+            Console.WriteLine("\n-----------------\n");
+
+            Algorytm(1000);
+
+            HM.ToList().ForEach(itemSet => Console.WriteLine(itemSet));
+            Console.ReadLine();
 
 
-            var random = new Random();
 
-
-            for (int i = 0; i < itemSets.Length; i++)
+            void Algorytm(int n)
             {
-                var itemSet = itemSets[i] = new ItemSet();
-               
+                int HMCR = 70;
+                for (int i = 0; i < n; i++)
+                {
 
+                    int r1 = new Random().Next(100);
+                    var nowyPlecak = new Plecak();
+
+                    if (r1 < HMCR)
+                    {
+
+                        for (int j = 0; j < HMS; j++)
+                        {
+
+                            var index = random.Next(HM[j].itemList.Count);
+                            var item = HM[j].itemList[index];
+
+                            if (nowyPlecak.weight + item.Weight < wagaDopuszczalna)
+                            nowyPlecak.Add(item);
+                        }
+
+
+                    }
+                    else
+                        nowyPlecak = generujPlecak();
+
+
+                    
+
+                    var FP = HM.Select(itemSet => itemSet.value);
+                    var minValue = FP.Min();
+                    var minIndex = FP.ToList().IndexOf(minValue);
+
+                    if (HM[minIndex].value < nowyPlecak.value)
+                        HM[minIndex] = nowyPlecak;
+
+                }
+
+
+
+            }
+            Plecak generujPlecak()
+            {
+                var plecak = new Plecak();
                 while (true)
                 {
 
                     var index = random.Next(0, 199);
                     var item = items[index];
 
-                    if (itemSet.weight + item.Weight >= wagaDopuszczalna) break;
-                    itemSet.Add(item);
+                    if (plecak.weight + item.Weight < wagaDopuszczalna)
+                        plecak.Add(item);
+                    else
+                        break;
                 }
 
-                
-               
-
+                return plecak;
             }
-
-
-            
-            var allValues = itemSets.Select(itemSet => itemSet.value);
-            var maxValue = allValues.Max();
-            var maxIndex = allValues.ToList().IndexOf(maxValue);
-
-
-
-            itemSets.ToList().ForEach(itemSet => Console.WriteLine(itemSet));
-            Console.WriteLine("\nNajlepszy: \n" + itemSets[maxIndex]);
-            Console.ReadLine();
-           
-           
-
         }
+
+       
+
+
+
+
+
+
+
+
+
+
 
         private static void Generate()
         {

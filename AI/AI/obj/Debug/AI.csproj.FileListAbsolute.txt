@@ -5,3 +5,4 @@ D:\Materialy\AI\SI---grupa-laboratoryjna-nr-9\AI\AI\obj\Debug\AI.csprojAssemblyR
 D:\Materialy\AI\SI---grupa-laboratoryjna-nr-9\AI\AI\obj\Debug\AI.csproj.CoreCompileInputs.cache
 D:\Materialy\AI\SI---grupa-laboratoryjna-nr-9\AI\AI\obj\Debug\AI.exe
 D:\Materialy\AI\SI---grupa-laboratoryjna-nr-9\AI\AI\obj\Debug\AI.pdb
+D:\Materialy\AI\SI---grupa-laboratoryjna-nr-9\AI\AI\bin\Debug\data.json
