@@ -53,9 +53,11 @@ namespace AI
             int wagaDopuszczalna = 300;
             int HMS = 20;
             Plecak[] HM = new Plecak[HMS];
-         
 
-           
+            var sortedItems = items.OrderByDescending(item => item.Weight).ToList();
+
+
+
 
 
             for (int i = 0; i < HM.Length; i++)
@@ -67,33 +69,57 @@ namespace AI
             HM.ToList().ForEach(itemSet => Console.WriteLine(itemSet));
             Console.WriteLine("\n-----------------\n");
 
-            Algorytm(1000);
+            Algorytm(500);
 
             HM.ToList().ForEach(itemSet => Console.WriteLine(itemSet));
             Console.ReadLine();
-
+            
+            Console.ReadLine();
 
 
             void Algorytm(int n)
             {
-                int HMCR = 70;
+                var HMCR = 70;
+                var PAR = 20;
                 for (int i = 0; i < n; i++)
                 {
 
-                    int r1 = new Random().Next(100);
+                    int r1 = random.Next(100);
                     var nowyPlecak = new Plecak();
 
                     if (r1 < HMCR)
                     {
 
-                        for (int j = 0; j < HMS; j++)
+
+                        int r2 = random.Next(100);
+
+                    
+                       
+                            for (int j = 0; j < HMS; j++)
+                            {
+
+                                var index = random.Next(HM[j].itemList.Count);
+                                var item = HM[j].itemList[index];
+
+                                if (nowyPlecak.weight + item.Weight < wagaDopuszczalna)
+                                    nowyPlecak.Add(item);
+                            }
+
+                        if (r2 < PAR)
                         {
+                            var index = random.Next(nowyPlecak.itemList.Count);
+                            var randItem = nowyPlecak.itemList[index];
+  
+                            var indexInSorted = sortedItems.IndexOf(randItem);
+                            var newIndexInSorted = indexInSorted + 1;
 
-                            var index = random.Next(HM[j].itemList.Count);
-                            var item = HM[j].itemList[index];
+                            if (newIndexInSorted < nowyPlecak.itemList.Count)
+                            {
+                                var newItem = sortedItems[newIndexInSorted];
+                                nowyPlecak.itemList[index] = newItem;
+                            }
 
-                            if (nowyPlecak.weight + item.Weight < wagaDopuszczalna)
-                            nowyPlecak.Add(item);
+
                         }
 
 
